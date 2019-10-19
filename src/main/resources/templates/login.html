@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆页面</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+    <script th:src="@{/js/jquery-2.1.1.min.js}" src="../static/js/jquery-2.1.1.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js"></script>
+
+    <style>
+        *{ list-style:none; margin:0; padding:0;}
+        a{ text-decoration:none; color:#F00;}
+        input{ width:250px; height:30px;font-size:16px; margin-left:65px; margin-top:28px; outline-style:none; border:none;}
+        #wrap{width:100%; height:700px;}
+        #head{width:1346px; height:120px;}
+        #h1d1{ width:314px; height:75px;background:url(/img/40.png);
+            margin-left:181px;}
+        #zhong{ width:1348px; height:474px;background:url(/img/dl1.png);
+            position:relative;}
+        #z1{ width:347px; height:401px; position: relative;left:823px; top:10px; }
+        #z11{ width:346px; height:53px; position: relative; top:40px; left:1px;}
+        #z12{ width:346px; height:142px; position: relative; top:45px;}
+        #z13{ width:346px; height:92px; position:relative; top:45px;}
+        .z1h1 input{ background:#F00; color:#FFF; width:305px; height:33px;
+            margin-left:21px; margin-top:26px;}
+    </style>
+</head>
+<body>
+<form action="/user/toLogin" method="post">
+    <div id="wrap">
+        <div id="head">
+            <div id="h1d1"></div>
+            <div><img src="/img/41.png"/></div>
+        </div>
+        <div id="zhong">
+            <div id="z1">
+                <div id="z11">
+                    <div style="float:left;">
+                        <a href=""><img src="/img/dlsm.png"/></a></div>
+                    <div style="float:left;"><a href="#"><img src="/img/dlzh.png"/></a></div>
+                </div>
+                <div id="z12">
+                    <div><input type="text" id="userName" name="userName"
+                                placeholder="邮箱/用户名" required /></div>
+                    <div><input type="text" id="pass" name="pass"
+                                placeholder="密码" style="padding-top: 6px;" required/></div>
+                </div>
+                <div id="z13">
+                    <div id="s2" style="font-size:14px; margin-left:270px;">忘记密码</div>
+                    <div class="z1h1"><input type="submit" value="登录" /></div>
+                </div>
+                <div style="font-size:16px; margin-left:270px; margin-top:76px;"><a href="/user/reg">立即注册</a></div>
+            </div>
+        </div>
+        <div id="xia"><img src="/img/dlxia.png"/> </div>
+    </div>
+</form>
+</body>
+</html>

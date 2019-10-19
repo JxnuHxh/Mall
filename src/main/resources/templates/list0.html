@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+    <script th:src="@{/js/jquery-2.1.1.min.js}" src="../static/js/jquery-2.1.1.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}" src="../static/js/bootstrap.min.js"></script>
+
+    <style>
+        *{ list-style:none; margin:0; padding:0;}
+        a{ text-decoration:none; color:#F00;}
+        a:hover{ text-decoration:underline; color:#903;}
+        #wrap{ width:100%; height:2100px;}
+        #head{ width:1347px; height:380px;}
+        #head1{ width:1347px; height:31px;background:url(/img/s0.png);}
+        #head1 li{ float:left; }
+        .h1d1{ font-size:14px; color:#F00; float:left; margin-top:5px;}
+        .h1d2{ width:15px; height:30px; background:url(/img/ss.png); float:left;}
+        #head2{ width:1347px; height:137px; background:url(/img/s1.png)}
+        #head2 input{ width:400px; height:26px; font-size:14px; color:#666; outline:none; border:none;}
+        .h2d1{ float:left;margin-left:450px; margin-top:32px;}
+        .h2d2{float:left; margin-left:152px; margin-top:27px;}
+        #head3{ width:1299px; height:160px; background:url(/img/s2.png); position:relative;}
+        .h3d1{ width:1299px; height:130px; position:relative; margin-top:20px;}
+        .h3d1 li{ float:left; margin-left:13px; margin-top:19px;}
+        #zhong{ width:1347px; height:1200px; position:relative;}
+        #z1{ width:1304px; height:592px; background:url(/img/z1.png); position:relative;}
+        .right{ float:left; margin-left:1225px; margin-top:16px;}
+        .zz1{ width:1030px; height:1200px; position:relative; left:280px; top:50px;}
+        .zz1 li{ float:left; margin-top:5px;}
+        #goods{ margin:10px 5px; width:240px; height:430px;
+             }
+        #imgURL{ width: 240px; height: 240px;}
+        #title{ width: 230px; height: 140px; margin: 0 auto;}
+        #eval{ width: 240px; height: 20px; color:grey;}
+        #price{ text-align:right; font-size: 18px; color:red;}
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="head">
+        <div id="head1">
+            <ul>
+                <li>
+                    <div class="h1d1" style=" margin-left:610px;"><a href="/user/login">请登录</a></div>
+                    <div class="h1d2"></div>
+                </li>
+                <li>
+                    <div class="h1d1"><a href="/user/reg">免费注册</a></div>
+                    <div class="h1d2"></div>
+                </li>
+                <li>
+                    <div class="h1d1"><a href="购物车.html">购物车</a></div>
+                    <div class="h1d2"></div>
+                </li>
+            </ul>
+        </div>
+        <div id="head2">
+            <div class="h2d1"><input type="text" placeholder="笔记本电脑" required/></div>
+            <div class="h2d2"><a href="购物车.html"><img src="/img/ss1.png"/></a></div>
+        </div>
+        <div id="head3">
+            <div class="h3d1">
+                <ul>
+                    <li style="margin-left:150px;"><a href="跳转界面/华硕电脑.html" target="_blank"><img src="/img/qq1.png"/></a></li>
+                    <li><a href="跳转界面/戴尔电脑.html" target="_blank"><img src="/img/qq2.png"/></a></li>
+                    <li><a href="跳转界面/联想电脑.html" target="_blank"><img src="/img/qq3.png"/></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="zhong">
+        <div id="z1">
+            <div class="right"><a href="跳转界面/京东商城2.html"><img src="/img/right.png"/></a></div>
+            <div class="zz1">
+                <!--商品展示区-->
+                <ul th:each="goods:${goodsList.list}">
+                    <li id="goods">
+                        <img id="imgURL" th:src="${goods.imgURL}"/>
+                        <div id="title" th:text="${goods.title}">
+                            <a href="跳转界面/联想拯救者电脑.html" target="_blank"></a>
+                        </div>
+                        <div id="eval" th:text="'评论数：'+${goods.evaluate}"></div>
+                        <div id="price" th:text="'惊爆价：'+${goods.price}  "></div>
+                    </li>
+                </ul>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <nav aria-label="Page navigation" class="text-center">
+                                <ul class="pagination pagination-md" >
+                                    <li th:if="!${goodsList.isFirstPage}">
+                                        <a th:href="@{'/goods/list0?pageNum=1'}">
+                                            首页
+                                        </a>
+                                    </li>
+                                    <li th:class="${goodsList.isFirstPage}?'disabled' : ''">
+                                        <a th:href="@{'/goods/list0?pageNum=' + ${goodsList.prePage}}">上一页</a>
+                                    </li>
+                                    <li th:if="${goodsList.pageNum - 2 >=1}" >
+                                        <a th:href="@{'/goods/list0?pageNum=' + ${goodsList.pageNum - 2}}" th:text="${goodsList.pageNum - 2}"></a>
+                                    </li>
+                                    <li th:if="${goodsList.pageNum - 1 >=1}" >
+                                        <a th:href="@{'/goods/list0?pageNum=' + ${goodsList.pageNum - 1}}" th:text="${goodsList.pageNum - 1}"></a>
+                                    </li>
+                                    <li class="active">
+                                        <a th:href="@{'/goods/list0?pageNum=' + ${goodsList.pageNum}}" th:text="${goodsList.pageNum}"></a>
+                                    </li>
+                                    <li th:if="${goodsList.pageNum + 1 <=goodsList.pages}" >
+                                        <a th:href="@{'/goods/list0?pageNum=' + ${goodsList.pageNum + 1}}" th:text="${goodsList.pageNum + 1}"></a>
+                                    </li>
+                                    <li th:if="${goodsList.pageNum+2 <=goodsList.pages}" >
+                                        <a th:href="@{'/goods/list0?pageNum=' + ${goodsList.pageNum+2}}" th:text="${goodsList.pageNum +2}"></a>
+                                    </li>
+                                    <li th:class="${goodsList.pageNum==goodsList.pages}?'disabled' : ''" >
+                                        <a th:href="@{'/goods/list0?pageNum=' + ${goodsList.pageNum + 1}}">
+                                            下一页
+                                        </a>
+                                    </li>
+                                    <li th:if="!${goodsList.isLastPage}">
+                                        <a th:href="@{'/goods/list0?pageNum=' + ${goodsList.pages}}">
+                                            尾页
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+<!--                <ul>
+                    <li><a href="跳转界面/戴尔dell.html" target="_blank"><img src="/img/shop/dert.png"/></a></li>
+                    <li><a href="跳转界面/联想Think.html" target="_blank"><img src="/img/shop/Thinkt.png"/></a></li>
+                    <li><a href="跳转界面/Apple电脑.html" target="_blank"><img src="/img/shop/Applet.png"/></a></li>
+                </ul>-->
+<!--                <ul>
+                    <li><a href="跳转界面/荣耀MagicBook电脑.html" target="_blank"><img src="/img/shop/hero.png"/></a></li>
+                    <li><a href="跳转界面/惠普【暗夜精灵4】.html" target="_blank"><img src="/img/shop/hp.png"/></a></li>
+                    <li><a href="跳转界面/Y7000.html" target="_blank"><img src="/img/shop/Y7000.png"/></a></li>
+                    <li><a href="跳转界面/联想Think.html" target="_blank"><img src="/img/shop/翼480.png"/></a></li>
+                </ul>-->
+<!--                <ul>
+                    <li style="margin-left:800px; float:left;">
+                        <img src="/img/shop/button-shang.png"/></li>
+                    <li><a href="跳转界面/京东商城2.html"><img src="/img/shop/button-xia.png"/></a></li>
+                </ul>-->
+            </div>
+        </div>
+    </div>
+    <div id="xia"><img src="/img/shop/iw.png"/></div>
+</div>
+</body>
+</html>

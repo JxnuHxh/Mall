@@ -1,0 +1,9 @@
+@charset "UTF-8";
+html, body, div {
+    margin: 0;
+    padding: 0;
+}
+
+.container .row .table tr th, td{
+    text-align: center;
+}
