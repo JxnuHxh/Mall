@@ -65,5 +65,34 @@
     </div>
 </form>
 </body>
+<script>
+    $("#telCode").bind('click',show);
+    function show() {
+        if($("#tel").val().length==11){
+            var telNum=$("#tel").val();
+            $.post("/user/sendCode",{"tel":telNum},function(response){
+               if(response.message){
+                   alert(response.message);
+               }
+               if(response.code ){
+                   $("#codeHide").val(response.code)
+               }
+            },"json");
+            $("#telCode").unbind('click');
+            $("#telCode").addClass('disabled');
+            var count=60;
+            var timer=setInterval(function(){
+            $("#telCode").html(count+"S后");
+            count--;
+            if(count<=0){
+                clearInterval(timer);
+                $("#telCode").html("取验证码");
+                $("#telCode").removeClass('disabled');
+                $("#telCode").bind('click',show);
+            }
+        },1000);
+    }
+    }
+</script>
 
 </html>
