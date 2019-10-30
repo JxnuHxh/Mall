@@ -27,7 +27,7 @@ public class UserController {
         String message = SendMessageUtil.getMessage(m);
         Map<String,Object> map=new HashMap<>();
         map.put("code",code);
-        map.put("massage","京东"+message);
+        map.put("massage","京东手机注册码"+message);
         return map;
     }
     @RequestMapping("/reg2")
