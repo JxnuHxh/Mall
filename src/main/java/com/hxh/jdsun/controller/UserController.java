@@ -1,6 +1,10 @@
 package com.hxh.jdsun.controller;
 
+import com.hxh.jdsun.bean.User;
+import com.hxh.jdsun.mapper.UserMapper;
+import com.hxh.jdsun.util.DBT;
 import com.hxh.jdsun.util.SendMessageUtil;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,5 +37,20 @@ public class UserController {
     @RequestMapping("/reg2")
     public String reg2(){
         return "reg2";
+    }
+
+    @RequestMapping("/in")
+    public static void inDB(){
+        //取到连接
+        SqlSession sess= DBT.getSession();
+        UserMapper ma=(UserMapper) sess.getMapper(UserMapper.class);
+        //要用UserMapp中的方法.
+        User u=new User();
+        u.setId(1000);
+        u.setUserName("sun1026");
+        u.setPassword("sun1026");
+
+        ma.insertUser(u);
+        sess.commit();//提交，取到最新的数据
     }
 }
