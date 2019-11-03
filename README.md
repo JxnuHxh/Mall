@@ -126,22 +126,39 @@ volatile 关键字，使一个变量在多个线程间可见 volatile并不能�
 volatile是一种稍弱的同步机制 用来确保将变量的更新操作通知到其他线程<br>
 访问volatile变量时不会执行加锁操作，因此也不会使执行线程阻塞，<br>
 volatile变量是一种比synchronized关键字更轻量级的同步机制<br>
-加锁机制既可以确保可见性又可以确保原子性，而volatile变量只能确保可见性<br>
+加锁机制既可以确保可见性又可以确保原子性，而volatile变量只能确保可见性  
 
-3.	编写一个单例模式<br>
-public class Singleton {  <br>
-       private static Singleton instance; <br> 
-    private Singleton (){<br>
-         
-       }   <br>
-     public static synchronized Singleton getInstance(){   <br>
-        if (instance == null)     <br>
-        instance = new Singleton(); <br>
-        return instance;<br>
-      }<br>
-}<br>
-4.	对于String, 在循环中拼接会有什么问题?如何解决<br>
-，String是一个被final修饰的类 不可变，不可修改<br>
-所以在循环中用String拼接会频繁创建新的对象 不仅耗费时间，<br>
-还会造成内存资源的浪费会导致性能下降 浪费资源 效率低下<br>
-可以使用String Builder和StringBuffer提高性能<br>
+3.	编写一个单例模式   
+public class Singleton {   
+    private static Singleton instance;   
+    private Singleton (){ }     
+     public static synchronized Singleton getInstance(){   
+        if (instance == null)       
+        instance = new Singleton();   
+        return instance;  
+      }  
+}  
+4.	对于String, 在循环中拼接会有什么问题?如何解决   
+，String是一个被final修饰的类 不可变，不可修改  
+所以在循环中用String拼接会频繁创建新的对象 不仅耗费时间，  
+还会造成内存资源的浪费会导致性能下降 浪费资源 效率低下  
+可以使用StringBuilder和StringBuffer提高性能   
+public static long testStr(int n){   
+    long start = SyStem.currentTimeMillis();  
+    String s=s+"java sun";   
+    for(int i=0;i<n;i++){  
+     s=s+"java sun";      
+       }  
+    long  end = System.currentTimeMillis();  
+    retrun end-start;  
+}   
+public static long testBu(iunt n){  
+  long start =System.currentTimeMillis();  
+  StringBuffer sb=new  StringBuffer();  
+  for(int i=0;i<n;i++){  
+  su.su.append("java sun");  
+  }  
+  long end =System.currentTimeMillis();  
+  retrun end-start;  
+}  
+ 
