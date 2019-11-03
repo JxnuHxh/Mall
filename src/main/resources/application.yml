@@ -1,7 +1,10 @@
 server:
   port: 8089
-datasource:
-  url: jdbc:mysql://localhoset:3306/jdsun
-  driver: com.mysql.jdbc.Driver
-  username: root
-  password: 61762
+spring:
+  datasource:
+    url: jdbc:mysql://localhoset:3306/jdsun
+    driver: com.mysql.jdbc.Driver
+    username: root
+    password: 61762
+    name: test
+    type: com.alibaba.druid.pool.DruidDataSource

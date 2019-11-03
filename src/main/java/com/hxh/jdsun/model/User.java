@@ -1,5 +1,10 @@
-package com.hxh.jdsun.bean;
+package com.hxh.jdsun.model;
+
 public class User {
+    private int id;
+    private String userName;
+    private String pass;
+
     public int getId() {
         return id;
     }
@@ -16,18 +21,11 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
-
-
-
-    int id;
-    String userName;
-    String password;
-
 }
