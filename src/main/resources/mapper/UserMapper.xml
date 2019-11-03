@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
 <mapper namespace="com.hxh.jdsun.dao.UserDao">
     <insert id="insert">
-<selectKey keyProperty="id" resultType="java.lang.Integer">
-    select * from ;
-</selectKey>
-        insert into 0_user(id,userName,pass) valus(#{id},#{userName},#{pass})
+        <selectKey keyProperty="id"
+                   resultType="java.lang.Integer"
+                   order="BEFORE">
+            select o_user_seq.nextval from dual
+        </selectKey>
+        insert into o_user(id,userName,pass)
+        values (#{id},#{userName},#{pass})
     </insert>
+
+    <select id="login" parameterType="com.hxh.jdsun.model.User"
+            resultType="com.hxh.jdsun.model.User">
+        select * from o_user where userName=#{userName} and pass= #{pass}
+    </select>
+
 </mapper>

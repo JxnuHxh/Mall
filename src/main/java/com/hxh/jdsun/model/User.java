@@ -1,10 +1,6 @@
 package com.hxh.jdsun.model;
 
 public class User {
-    private int id;
-    private String userName;
-    private String pass;
-
     public int getId() {
         return id;
     }
@@ -28,4 +24,8 @@ public class User {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
+    private  int id;
+    private String userName;
+    private String pass;
 }
