@@ -7,11 +7,11 @@
     <script src="js/jquery-2.1.1.min.js"></script>
 </head>
 <body>
-<form method="post" action="">
-    商品标题:<input name="goods.title"><br>
-    商品价格:<input name="goods.price"><br>
+<form method="post" action="/goods/save.action">
+    商品标题:<input name="title"><br>
+    商品价格:<input name="price"><br>
     商品图片:<input id="imgFile" type="file"><br>
-    <input type ="hidden" name="goods.img">
+    <input type ="hidden" name="img">
     <img id="defaaultImg" src="/static/img/right.png"><br>
     <input type="submit">
 </form>
@@ -21,6 +21,8 @@
        reader.readAsDataURL(event.target.files[0]);
        reader.onload=function (event) {
            $("#defaaultImg").attr("src",event.target.result);
+           //把图片编码放到隐藏狱中
+           $(":hidden[name=img]").val(event.target.result);
        }
     });
 </script>
